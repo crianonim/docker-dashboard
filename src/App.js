@@ -38,6 +38,9 @@ export default withStyles(styles)(({classes})=>
             Docker Dashbord App
           </Typography>
           <p>Welcome to our website.</p>
+          <ul>
+          {new Array(500).fill(null).map((el,i)=><li>{i}</li>)}
+          </ul>
         </Box>
       </Container>
     </div>
