@@ -4,7 +4,7 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import { AppBar, Toolbar, IconButton, Menu, MenuItem } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Menu, MenuItem, Drawer, List, ListItem, ListItemText } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import MenuIcon from '@material-ui/icons/Menu';
 import HelpIcon  from '@material-ui/icons/Help';
@@ -23,12 +23,13 @@ const options = [
 ];
 export default withStyles(styles)(({classes})=> {
   const [anchorEl,setAnchorEl]=React.useState(null);
+  const [openDrawer,setOpenDrawer]=React.useState(false);
   return  (
     
     <div className={classes.root}>
       <AppBar position="fixed">
         <Toolbar>
-          <IconButton color="inherit" className={classes.menuButton}>
+          <IconButton color="inherit" className={classes.menuButton} onClick={()=>{setOpenDrawer(!openDrawer)}}>
             <MenuIcon />
           </IconButton>
           <Typography className={classes.flex}>Docker Dashbord</Typography>
@@ -42,6 +43,14 @@ export default withStyles(styles)(({classes})=> {
             </Menu>
         </Toolbar>
       </AppBar>
+      <Drawer open={openDrawer} onClose={()=>setOpenDrawer(false)}>
+        <List>
+          <ListItem button onClick={()=>{console.log("Pie");setOpenDrawer(false)}}>
+            <ListItemText>Pierwszy</ListItemText>
+          </ListItem>
+        </List>
+
+      </Drawer>
       <Button variant="contained" color="primary">
         Click me
       </Button>
