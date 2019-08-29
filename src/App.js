@@ -29,8 +29,11 @@ export default withStyles(styles)(({classes})=> {
   const [openDrawer,setOpenDrawer]=React.useState(false);
   const [tab,setTab]=React.useState(0);
   const [docker,setDocker]=React.useState([]);
-  // fetch("http://localhost:3333/api/proxy/http://localhost:2376/containers/json?all=true").then(res=>res.json()).then(res=>setDocker(res))
-
+  
+  React.useEffect(()=>{
+    console.log("RENDER");
+    fetch("http://localhost:3333/api/proxy/http://localhost:2376/containers/json?all=true").then(res=>res.json()).then(res=>setDocker(res))
+  },[])
   return  (
     
     <div className={classes.root}>
