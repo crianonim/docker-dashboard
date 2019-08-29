@@ -16,6 +16,8 @@ const styles = theme => ({
   menuButton: { marginLeft: -12, marginRight: 20 }
 });
 
+
+
 const options = [
   'I just want to say I LOVE this app',
   'Show all notification content',
@@ -26,6 +28,9 @@ export default withStyles(styles)(({classes})=> {
   const [anchorEl,setAnchorEl]=React.useState(null);
   const [openDrawer,setOpenDrawer]=React.useState(false);
   const [tab,setTab]=React.useState(0);
+  const [docker,setDocker]=React.useState([]);
+  fetch("http://localhost:3333/api/proxy/http://localhost:2376/containers/json?all=true").then(res=>res.json()).then(res=>setDocker(res))
+
   return  (
     
     <div className={classes.root}>
@@ -58,7 +63,7 @@ export default withStyles(styles)(({classes})=> {
         </List>
 
       </Drawer>
-      <Tabs value={tab} onChange={(e,value)=>setTab(value)}>
+      <Tabs value={tab} onChange={(e,value)=>setTab(value)} centered>
         <Tab label="Pier"></Tab>
         <Tab label="Drug"></Tab>
 
@@ -66,8 +71,9 @@ export default withStyles(styles)(({classes})=> {
       <Button variant="contained" color="primary">
         Click me
       </Button>
+      <code>{JSON.stringify(docker) }</code>
       {(tab===0) && (
-
+        
         <Container maxWidth="md">
         <Box my={4}>
           <Typography variant="h4" component="h1" gutterBottom>
@@ -78,6 +84,7 @@ export default withStyles(styles)(({classes})=> {
           {new Array(500).fill(null).map((el,i)=><li key={i}>{i}</li>)}
           </ul>
         </Box>
+       
       </Container>
       )}
       {(tab===1)&&(
