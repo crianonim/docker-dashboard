@@ -4,10 +4,11 @@ import Button from "@material-ui/core/Button";
 import Container from "@material-ui/core/Container";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import { AppBar, Toolbar, IconButton, Menu, MenuItem, Drawer, List, ListItem, ListItemText } from "@material-ui/core";
+import { AppBar, Toolbar, IconButton, Menu, MenuItem, Drawer, List, ListItem, ListItemText, ListItemIcon } from "@material-ui/core";
 import { withStyles } from "@material-ui/styles";
 import MenuIcon from '@material-ui/icons/Menu';
 import HelpIcon  from '@material-ui/icons/Help';
+import AddAPhoto from '@material-ui/icons/AddAPhoto'
 
 const styles = theme => ({
   root: { flexGrow: 1 },
@@ -46,6 +47,7 @@ export default withStyles(styles)(({classes})=> {
       <Drawer open={openDrawer} onClose={()=>setOpenDrawer(false)}>
         <List>
           <ListItem button onClick={()=>{console.log("Pie");setOpenDrawer(false)}}>
+            <ListItemIcon><AddAPhoto /></ListItemIcon>
             <ListItemText>Pierwszy</ListItemText>
           </ListItem>
         </List>
